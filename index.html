@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анімоване модальне вікно</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 300px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backdrop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <button id="openModal">штука яка відкривається</button>
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <img src="./img/3F3F.webp" alt="">
+        <button id="closeModal">Закрити</button>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const overlay = document.getElementById('overlay');
+        const openBtn = document.getElementById('openModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+            overlay.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
